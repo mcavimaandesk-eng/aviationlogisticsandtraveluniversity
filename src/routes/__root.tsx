@@ -80,6 +80,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "ALTTII" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@ALTTII" },
+      { property: "og:title", content: "ALTTII — Aviation Logistics & Travel Technology Institute of India" },
+      { name: "twitter:title", content: "ALTTII — Aviation Logistics & Travel Technology Institute of India" },
+      { property: "og:description", content: "India's first specialized institute for Aviation Logistics, Airport Operations and Travel Technology. DGCA & BCAS aligned. Internships at DEL, BOM, BLR, MAA." },
+      { name: "twitter:description", content: "India's first specialized institute for Aviation Logistics, Airport Operations and Travel Technology. DGCA & BCAS aligned. Internships at DEL, BOM, BLR, MAA." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/53364f04-5eab-474a-ba9f-1a079600fec8" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/53364f04-5eab-474a-ba9f-1a079600fec8" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
