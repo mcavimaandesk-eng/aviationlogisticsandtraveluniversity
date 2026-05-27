@@ -36,6 +36,7 @@ function Home() {
 }
 
 function Hero() {
+  const { t } = useLang();
   return (
     <section className="relative isolate overflow-hidden bg-navy text-navy-foreground">
       <img
@@ -52,16 +53,28 @@ function Hero() {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-full border border-saffron/40 bg-saffron/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-saffron">
               <span className="h-1.5 w-1.5 rounded-full bg-saffron" />
-              Est. 2026 · DGCA · BCAS · Ministry of Civil Aviation framework
+              {t(
+                "Est. 2026 · DGCA · BCAS · Ministry of Civil Aviation framework",
+                "स्थापना 2026 · डीजीसीए · बीसीएएस · नागर विमानन मंत्रालय की रूपरेखा"
+              )}
             </div>
             <h1 className="mt-5 font-display text-4xl font-bold leading-[1.05] text-balance sm:text-5xl md:text-6xl">
-              India's First Institute for{" "}
-              <span className="text-saffron">Specialized Aviation Careers</span>
+              {t("India's First Institute for ", "विशिष्ट विमानन करियर के लिए ")}
+              <span className="text-saffron">
+                {t("Specialized Aviation Careers", "भारत का पहला संस्थान")}
+              </span>
             </h1>
             <p className="mt-5 max-w-2xl text-base text-white/85 sm:text-lg">
-              Get Certified. Get Hired. Intern inside the airport logistics center
-              by <b className="text-white">Vimaan Desk</b> & <b className="text-white">Fly My Luggage™</b>.
-              Curriculum aligned with DGCA & BCAS under the Ministry of Civil Aviation, India.
+              {t(
+                "Get Certified. Get Hired. Intern inside the airport logistics center by ",
+                "प्रमाणित बनें। नौकरी पाएं। हवाई अड्डे के लॉजिस्टिक्स केंद्र में इंटर्नशिप करें — "
+              )}
+              <b className="text-white">Vimaan Desk</b> & <b className="text-white">Fly My Luggage™</b>.
+              {" "}
+              {t(
+                "Curriculum aligned with DGCA & BCAS under the Ministry of Civil Aviation, India.",
+                "पाठ्यक्रम डीजीसीए एवं बीसीएएस के अनुरूप, नागर विमानन मंत्रालय, भारत सरकार के अंतर्गत।"
+              )}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">
@@ -69,21 +82,21 @@ function Hero() {
                 to="/admissions"
                 className="rounded-md bg-saffron px-6 py-3 text-sm font-bold text-saffron-foreground shadow-elevated transition hover:brightness-105"
               >
-                Enroll for 2026–27 Cohort →
+                {t("Enroll for 2026–27 Cohort →", "2026–27 बैच में नामांकन करें →")}
               </Link>
               <Link
                 to="/programs"
                 className="rounded-md border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
               >
-                Explore 8 Programs
+                {t("Explore 8 Programs", "8 कार्यक्रम देखें")}
               </Link>
             </div>
 
             <div className="mt-8 grid max-w-2xl grid-cols-3 gap-4">
               {[
-                { k: "3–9", v: "Months to job-ready" },
-                { k: "100%", v: "Placement assistance" },
-                { k: "₹3–8 L", v: "Average package range" },
+                { k: "3–9", v: t("Months to job-ready", "महीनों में नौकरी के लिए तैयार") },
+                { k: "100%", v: t("Placement assistance", "नियुक्ति सहायता") },
+                { k: "₹3–8 L", v: t("Average package range", "औसत वेतन सीमा") },
               ].map((s) => (
                 <div key={s.v} className="rounded-md border border-white/15 bg-white/5 p-3 backdrop-blur">
                   <div className="font-display text-2xl font-bold text-saffron">{s.k}</div>
@@ -96,21 +109,30 @@ function Hero() {
           <div className="lg:col-span-5">
             <div className="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur-md shadow-elevated">
               <div className="mb-3 flex items-center justify-between">
-                <div className="text-xs font-semibold uppercase tracking-widest text-saffron">Admission Enquiry</div>
-                <div className="rounded bg-saffron/20 px-2 py-0.5 text-[10px] font-bold text-saffron">2026–27 OPEN</div>
+                <div className="text-xs font-semibold uppercase tracking-widest text-saffron">
+                  {t("Admission Enquiry", "प्रवेश पूछताछ")}
+                </div>
+                <div className="rounded bg-saffron/20 px-2 py-0.5 text-[10px] font-bold text-saffron">
+                  {t("2026–27 OPEN", "2026–27 खुला")}
+                </div>
               </div>
               <form className="space-y-3">
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder="Full Name" />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder="Mobile (+91)" />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder="Email" />
+                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Full Name", "पूरा नाम")} />
+                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Mobile (+91)", "मोबाइल (+91)")} />
+                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Email", "ईमेल")} />
                 <select className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white outline-none focus:border-saffron">
-                  <option className="text-ink">Interested Program</option>
+                  <option className="text-ink">{t("Interested Program", "रुचि का कार्यक्रम")}</option>
                   {PROGRAMS.map((p) => (<option key={p.slug} className="text-ink">{p.title}</option>))}
                 </select>
                 <button type="button" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
-                  Request Callback
+                  {t("Request Callback", "कॉलबैक का अनुरोध करें")}
                 </button>
-                <div className="text-[10px] text-white/60">By submitting you agree to ALTTII's privacy policy. Data handled per MeitY norms.</div>
+                <div className="text-[10px] text-white/60">
+                  {t(
+                    "By submitting you agree to ALTTII's privacy policy. Data handled per MeitY norms.",
+                    "सबमिट करके आप ALTTII की गोपनीयता नीति से सहमत होते हैं। डेटा MeitY मानकों के अनुसार संभाला जाता है।"
+                  )}
+                </div>
               </form>
             </div>
           </div>
