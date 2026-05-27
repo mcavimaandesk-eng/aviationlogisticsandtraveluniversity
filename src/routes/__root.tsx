@@ -114,12 +114,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { LanguageProvider } from "@/lib/i18n";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <LanguageProvider>
+        <Outlet />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }
