@@ -47,10 +47,10 @@ export function Header() {
             </Link>
           ))}
           <Link
-            to="/admissions"
+            to="/prospectus"
             className="ml-2 rounded-md bg-saffron px-4 py-2 text-sm font-bold text-saffron-foreground shadow-card transition hover:brightness-105"
           >
-            {t("Apply Now →", "अभी आवेदन करें →")}
+            {t("Get Prospectus ₹299 →", "प्रॉस्पेक्टस ₹299 →")}
           </Link>
         </nav>
       </div>
