@@ -41,6 +41,7 @@ export function Footer() {
             <li>{t("BCAS security protocols", "बीसीएएस सुरक्षा प्रोटोकॉल")}</li>
             <li>{t("Ministry of Civil Aviation framework", "नागर विमानन मंत्रालय की रूपरेखा")}</li>
             <li>{t("NSDC / Skill India ready", "एनएसडीसी / स्किल इंडिया अनुरूप")}</li>
+            <li><Link to="/sources" className="underline-offset-2 hover:underline">{t("Sources & Citations →", "स्रोत एवं संदर्भ →")}</Link></li>
           </ul>
         </div>
         <div>
