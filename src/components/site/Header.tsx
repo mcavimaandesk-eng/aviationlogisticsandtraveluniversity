@@ -11,6 +11,7 @@ export function Header() {
     { to: "/admissions", label: t("Admissions", "प्रवेश") },
     { to: "/placements", label: t("Placements", "नियुक्तियाँ") },
     { to: "/industry", label: t("Industry", "उद्योग") },
+    { to: "/sources", label: t("Sources", "स्रोत") },
     { to: "/contact", label: t("Contact", "संपर्क") },
   ] as const;
 
