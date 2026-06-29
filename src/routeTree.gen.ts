@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SourcesRouteImport } from './routes/sources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ProspectusRouteImport } from './routes/prospectus'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as IndustryRouteImport } from './routes/industry'
@@ -27,6 +28,11 @@ const SourcesRoute = SourcesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProspectusRoute = ProspectusRouteImport.update({
+  id: '/prospectus',
+  path: '/prospectus',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsRoute = ProgramsRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/industry': typeof IndustryRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
+  '/prospectus': typeof ProspectusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/industry': typeof IndustryRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
+  '/prospectus': typeof ProspectusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/industry': typeof IndustryRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
+  '/prospectus': typeof ProspectusRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sources': typeof SourcesRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/industry'
     | '/placements'
     | '/programs'
+    | '/prospectus'
     | '/sitemap.xml'
     | '/sources'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/industry'
     | '/placements'
     | '/programs'
+    | '/prospectus'
     | '/sitemap.xml'
     | '/sources'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/industry'
     | '/placements'
     | '/programs'
+    | '/prospectus'
     | '/sitemap.xml'
     | '/sources'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   IndustryRoute: typeof IndustryRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRoute
+  ProspectusRoute: typeof ProspectusRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SourcesRoute: typeof SourcesRoute
 }
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prospectus': {
+      id: '/prospectus'
+      path: '/prospectus'
+      fullPath: '/prospectus'
+      preLoaderRoute: typeof ProspectusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programs': {
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndustryRoute: IndustryRoute,
   PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRoute,
+  ProspectusRoute: ProspectusRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SourcesRoute: SourcesRoute,
 }
