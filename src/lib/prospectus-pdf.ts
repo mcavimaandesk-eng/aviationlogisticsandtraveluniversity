@@ -135,15 +135,14 @@ export function generateProspectusPdf(buyer: ProspectusBuyer): jsPDF {
     const title = p.title.length > 42 ? p.title.slice(0, 40) + "…" : p.title;
     doc.setFont("helvetica", "bold"); doc.text(title, M + 8, y + 12);
     doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...MUTED);
-    const tag = (p as { tag?: string }).tag ?? "";
-    if (tag) doc.text(tag, M + 8, y + 23);
+    doc.text(p.category, M + 8, y + 23);
     doc.setTextColor(30, 30, 30); doc.setFontSize(8.5);
-    doc.text(String(p.nsqf ?? "—"), M + 250, y + 14);
-    doc.text(String((p as { duration?: string }).duration ?? "—"), M + 310, y + 14);
+    doc.text(p.nsqf, M + 250, y + 14);
+    doc.text(p.duration, M + 310, y + 14);
     doc.setTextColor(...GREEN); doc.setFont("helvetica", "bold");
-    doc.text(String(p.fee ?? "—"), M + 390, y + 14);
+    doc.text(p.fee, M + 390, y + 14);
     doc.setTextColor(...NAVY);
-    doc.text(String((p as { ctc?: string }).ctc ?? "—"), M + 450, y + 14);
+    doc.text(p.salary, M + 450, y + 14);
     doc.setFont("helvetica", "normal"); doc.setTextColor(30, 30, 30);
     y += 28;
     if (y > H - 80) { footer(2, 3); doc.addPage(); header("PROGRAM CATALOGUE (cont.)"); y = 100; }
