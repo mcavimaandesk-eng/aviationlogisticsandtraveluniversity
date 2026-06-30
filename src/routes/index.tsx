@@ -79,11 +79,19 @@ function Hero() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                to="/admissions"
+                to="/prospectus"
                 className="rounded-md bg-saffron px-6 py-3 text-sm font-bold text-saffron-foreground shadow-elevated transition hover:brightness-105"
               >
-                {t("Enroll for 2026–27 Cohort →", "2026–27 बैच में नामांकन करें →")}
+                {t("Enroll for 2026–27 · Pay ₹299 →", "2026–27 बैच · ₹299 भुगतान करें →")}
               </Link>
+              <a
+                href="https://wa.me/918700904917?text=Hello%20ALTTII%2C%20I'd%20like%20to%20know%20more%20about%20the%202026%E2%80%9327%20batch."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-india-green bg-india-green/90 px-6 py-3 text-sm font-bold text-white transition hover:brightness-110"
+              >
+                💬 {t("WhatsApp Counsellor", "व्हाट्सएप पर बात करें")}
+              </a>
               <Link
                 to="/programs"
                 className="rounded-md border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
