@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "./index";
+import { openWhatsAppLead, readForm } from "@/lib/lead";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -58,20 +59,32 @@ function ContactPage() {
 
           <div>
             <SectionHeader eyebrow="Message" title="Send us a message" />
-            <form className="mt-6 space-y-3 rounded-xl border border-border bg-card p-6 shadow-card">
+            <form
+              className="mt-6 space-y-3 rounded-xl border border-border bg-card p-6 shadow-card"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const f = readForm(e.currentTarget);
+                openWhatsAppLead(`Contact: ${f.topic || "General"}`, {
+                  Name: f.name, Mobile: f.mobile, Email: f.email, Message: f.message,
+                });
+              }}
+            >
               <div className="grid gap-3 sm:grid-cols-2">
-                <input className="rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Full Name" />
-                <input className="rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Mobile (+91)" />
+                <input name="name" required className="rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Full Name" />
+                <input name="mobile" required className="rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Mobile (+91)" />
               </div>
-              <input className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Email" />
-              <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
+              <input name="email" type="email" className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Email" />
+              <select name="topic" className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm">
                 <option>I'm contacting about…</option>
                 <option>Admissions</option><option>Corporate Hiring</option><option>Partnership</option><option>Press</option>
               </select>
-              <textarea rows={5} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Your message" />
-              <button type="button" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
-                Send Message →
+              <textarea name="message" rows={5} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Your message" />
+              <button type="submit" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
+                💬 Send via WhatsApp →
               </button>
+              <Link to="/prospectus" className="block w-full rounded-md border border-navy bg-navy py-2.5 text-center text-sm font-bold text-white hover:brightness-110">
+                Or apply now — Pay ₹299 & download Prospectus →
+              </Link>
             </form>
           </div>
         </div>
