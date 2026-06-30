@@ -124,17 +124,29 @@ function Hero() {
                   {t("2026–27 OPEN", "2026–27 खुला")}
                 </div>
               </div>
-              <form className="space-y-3">
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Full Name", "पूरा नाम")} />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Mobile (+91)", "मोबाइल (+91)")} />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Email", "ईमेल")} />
-                <select className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white outline-none focus:border-saffron">
+              <form
+                className="space-y-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = readForm(e.currentTarget);
+                  openWhatsAppLead("Admission Enquiry (Hero Form)", {
+                    Name: f.name, Mobile: f.mobile, Email: f.email, Program: f.program,
+                  });
+                }}
+              >
+                <input name="name" required className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Full Name", "पूरा नाम")} />
+                <input name="mobile" required className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Mobile (+91)", "मोबाइल (+91)")} />
+                <input name="email" type="email" className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Email", "ईमेल")} />
+                <select name="program" className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white outline-none focus:border-saffron">
                   <option className="text-ink">{t("Interested Program", "रुचि का कार्यक्रम")}</option>
                   {PROGRAMS.map((p) => (<option key={p.slug} className="text-ink">{p.title}</option>))}
                 </select>
-                <button type="button" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
-                  {t("Request Callback", "कॉलबैक का अनुरोध करें")}
+                <button type="submit" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
+                  💬 {t("Request Callback via WhatsApp", "व्हाट्सएप पर कॉलबैक अनुरोध")}
                 </button>
+                <Link to="/prospectus" className="block w-full rounded-md border border-white/30 bg-white/10 py-2.5 text-center text-sm font-semibold text-white hover:bg-white/15">
+                  {t("Or pay ₹299 & download prospectus →", "या ₹299 भुगतान कर प्रॉस्पेक्टस डाउनलोड करें →")}
+                </Link>
                 <div className="text-[10px] text-white/60">
                   {t(
                     "By submitting you agree to ALTTII's privacy policy. Data handled per MeitY norms.",
