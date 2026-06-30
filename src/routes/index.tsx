@@ -6,6 +6,7 @@ import { PROGRAMS } from "@/lib/programs";
 import { AVIATION_STATS_2026, DEMAND_GAP, HUBS } from "@/lib/stats";
 import founderImg from "@/assets/founder.jpg";
 import { useLang } from "@/lib/i18n";
+import { openWhatsAppLead, readForm } from "@/lib/lead";
 
 export const Route = createFileRoute("/")({
   head: () => ({
