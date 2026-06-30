@@ -6,6 +6,7 @@ import { PROGRAMS } from "@/lib/programs";
 import { AVIATION_STATS_2026, DEMAND_GAP, HUBS } from "@/lib/stats";
 import founderImg from "@/assets/founder.jpg";
 import { useLang } from "@/lib/i18n";
+import { openWhatsAppLead, readForm } from "@/lib/lead";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -79,11 +80,19 @@ function Hero() {
 
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                to="/admissions"
+                to="/prospectus"
                 className="rounded-md bg-saffron px-6 py-3 text-sm font-bold text-saffron-foreground shadow-elevated transition hover:brightness-105"
               >
-                {t("Enroll for 2026–27 Cohort →", "2026–27 बैच में नामांकन करें →")}
+                {t("Enroll for 2026–27 · Pay ₹299 →", "2026–27 बैच · ₹299 भुगतान करें →")}
               </Link>
+              <a
+                href="https://wa.me/918700904917?text=Hello%20ALTTII%2C%20I'd%20like%20to%20know%20more%20about%20the%202026%E2%80%9327%20batch."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-md border border-india-green bg-india-green/90 px-6 py-3 text-sm font-bold text-white transition hover:brightness-110"
+              >
+                💬 {t("WhatsApp Counsellor", "व्हाट्सएप पर बात करें")}
+              </a>
               <Link
                 to="/programs"
                 className="rounded-md border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
@@ -116,17 +125,29 @@ function Hero() {
                   {t("2026–27 OPEN", "2026–27 खुला")}
                 </div>
               </div>
-              <form className="space-y-3">
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Full Name", "पूरा नाम")} />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Mobile (+91)", "मोबाइल (+91)")} />
-                <input className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Email", "ईमेल")} />
-                <select className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white outline-none focus:border-saffron">
+              <form
+                className="space-y-3"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const f = readForm(e.currentTarget);
+                  openWhatsAppLead("Admission Enquiry (Hero Form)", {
+                    Name: f.name, Mobile: f.mobile, Email: f.email, Program: f.program,
+                  });
+                }}
+              >
+                <input name="name" required className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Full Name", "पूरा नाम")} />
+                <input name="mobile" required className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Mobile (+91)", "मोबाइल (+91)")} />
+                <input name="email" type="email" className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/60 outline-none focus:border-saffron" placeholder={t("Email", "ईमेल")} />
+                <select name="program" className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm text-white outline-none focus:border-saffron">
                   <option className="text-ink">{t("Interested Program", "रुचि का कार्यक्रम")}</option>
                   {PROGRAMS.map((p) => (<option key={p.slug} className="text-ink">{p.title}</option>))}
                 </select>
-                <button type="button" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
-                  {t("Request Callback", "कॉलबैक का अनुरोध करें")}
+                <button type="submit" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
+                  💬 {t("Request Callback via WhatsApp", "व्हाट्सएप पर कॉलबैक अनुरोध")}
                 </button>
+                <Link to="/prospectus" className="block w-full rounded-md border border-white/30 bg-white/10 py-2.5 text-center text-sm font-semibold text-white hover:bg-white/15">
+                  {t("Or pay ₹299 & download prospectus →", "या ₹299 भुगतान कर प्रॉस्पेक्टस डाउनलोड करें →")}
+                </Link>
                 <div className="text-[10px] text-white/60">
                   {t(
                     "By submitting you agree to ALTTII's privacy policy. Data handled per MeitY norms.",
@@ -355,9 +376,14 @@ function FinalCTA() {
             )}
           </h3>
         </div>
-        <Link to="/admissions" className="rounded-md bg-navy px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
-          {t("Start your application →", "अपना आवेदन शुरू करें →")}
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link to="/prospectus" className="rounded-md bg-navy px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
+            {t("Pay ₹299 & Download Prospectus →", "₹299 भुगतान कर प्रॉस्पेक्टस लें →")}
+          </Link>
+          <a href="https://wa.me/918700904917?text=Hi%20ALTTII%20%E2%80%94%20I%20want%20to%20enroll%20for%20the%202026%E2%80%9327%20batch." target="_blank" rel="noopener noreferrer" className="rounded-md bg-india-green px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
+            💬 {t("Chat on WhatsApp", "व्हाट्सएप पर बात करें")}
+          </a>
+        </div>
       </div>
     </section>
   );

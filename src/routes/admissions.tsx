@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "./index";
 import { PROGRAMS } from "@/lib/programs";
+import { openWhatsAppLead, readForm } from "@/lib/lead";
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
@@ -77,25 +78,38 @@ function AdmissionsPage() {
           </div>
           <div>
             <SectionHeader eyebrow="Apply Now" title="Reserve your seat" />
-            <form className="mt-6 space-y-3 rounded-xl border border-border bg-card p-6 shadow-card">
+            <form
+              className="mt-6 space-y-3 rounded-xl border border-border bg-card p-6 shadow-card"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const f = readForm(e.currentTarget);
+                openWhatsAppLead("Admission Application — 2026–27", {
+                  Name: f.name, Mobile: f.mobile, Email: f.email,
+                  Hub: f.hub, Program: f.program, Notes: f.notes,
+                });
+              }}
+            >
               <div className="grid gap-3 sm:grid-cols-2">
-                <input className="rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Full Name" />
-                <input className="rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Mobile (+91)" />
+                <input name="name" required className="rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Full Name" />
+                <input name="mobile" required className="rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Mobile (+91)" />
               </div>
-              <input className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Email" />
+              <input name="email" type="email" className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-saffron" placeholder="Email" />
               <div className="grid gap-3 sm:grid-cols-2">
-                <select className="rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select name="hub" className="rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option>Preferred Hub</option><option>Delhi (DEL)</option><option>Mumbai (BOM)</option><option>Bengaluru (BLR)</option><option>Chennai (MAA)</option>
                 </select>
-                <select className="rounded-md border border-input bg-background px-3 py-2 text-sm">
+                <select name="program" className="rounded-md border border-input bg-background px-3 py-2 text-sm">
                   <option>Program</option>
                   {PROGRAMS.map((p) => <option key={p.slug}>{p.title}</option>)}
                 </select>
               </div>
-              <textarea rows={3} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Anything we should know? (Optional)" />
-              <button type="button" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
-                Submit Application →
+              <textarea name="notes" rows={3} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm" placeholder="Anything we should know? (Optional)" />
+              <button type="submit" className="w-full rounded-md bg-saffron py-2.5 text-sm font-bold text-saffron-foreground transition hover:brightness-105">
+                💬 Submit via WhatsApp →
               </button>
+              <Link to="/prospectus" className="block w-full rounded-md border border-navy bg-navy py-2.5 text-center text-sm font-bold text-white hover:brightness-110">
+                Reserve seat now — Pay ₹299 & download Prospectus →
+              </Link>
               <div className="text-[10px] text-muted-foreground">Data handled per MeitY norms. We never share applicant data.</div>
             </form>
           </div>
