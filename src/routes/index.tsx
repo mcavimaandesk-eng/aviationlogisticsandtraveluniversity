@@ -376,9 +376,14 @@ function FinalCTA() {
             )}
           </h3>
         </div>
-        <Link to="/admissions" className="rounded-md bg-navy px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
-          {t("Start your application →", "अपना आवेदन शुरू करें →")}
-        </Link>
+        <div className="flex flex-wrap gap-3">
+          <Link to="/prospectus" className="rounded-md bg-navy px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
+            {t("Pay ₹299 & Download Prospectus →", "₹299 भुगतान कर प्रॉस्पेक्टस लें →")}
+          </Link>
+          <a href="https://wa.me/918700904917?text=Hi%20ALTTII%20%E2%80%94%20I%20want%20to%20enroll%20for%20the%202026%E2%80%9327%20batch." target="_blank" rel="noopener noreferrer" className="rounded-md bg-india-green px-7 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:brightness-110">
+            💬 {t("Chat on WhatsApp", "व्हाट्सएप पर बात करें")}
+          </a>
+        </div>
       </div>
     </section>
   );
